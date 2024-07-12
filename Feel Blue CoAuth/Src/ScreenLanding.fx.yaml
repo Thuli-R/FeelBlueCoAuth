@@ -54,3 +54,11 @@
         Y: =643
         ZIndex: =3
 
+    ButtonCanvas3 As Button:
+        DisplayMode: =DisplayMode.Edit
+        Height: =32
+        Width: =96
+        X: =622
+        Y: =67
+        ZIndex: =4
+
