@@ -1,0 +1,1496 @@
+"ScreenNewEditRequest As screen.'welcomeLayout_ver1.0'":
+    Fill: =Color.White
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+
+    ScreenContainer3_2 As groupContainer.verticalAutoLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(214, 221, 224, 1)
+        Height: =Parent.Height
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =5
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =16
+        PaddingLeft: =16
+        PaddingRight: =16
+        PaddingTop: =16
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =Parent.Width
+        ZIndex: =1
+
+        HeaderContainer2_5 As groupContainer.horizontalAutoLayoutContainer:
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(39, 113, 194, 1)
+            FillPortions: =0
+            Height: =50
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            PaddingBottom: =5
+            PaddingLeft: =5
+            PaddingRight: =5
+            PaddingTop: =5
+            RadiusBottomLeft: =8
+            RadiusBottomRight: =8
+            RadiusTopLeft: =8
+            RadiusTopRight: =8
+            ZIndex: =2
+
+            Icon1_6 As icon.Reload:
+                AlignInContainer: =AlignInContainer.Center
+                BorderColor: =App.Theme.Colors.Darker40
+                Color: |
+                    =Color.White
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(244, 244, 244, 1)
+                Height: =Parent.Height
+                Icon: =Icon.BackArrow
+                OnSelect: =Back()
+                PaddingBottom: =5
+                PaddingTop: =5
+                ZIndex: =1
+
+            Label1_3 As label:
+                Align: =Align.Center
+                BorderColor: =App.Theme.Colors.Darker40
+                Color: =RGBA(255, 255, 255, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                FillPortions: =1
+                Font: =App.Theme.Font
+                FontWeight: =FontWeight.Semibold
+                Size: =25
+                Text: =varRequestType
+                VerticalAlign: =VerticalAlign.Bottom
+                ZIndex: =2
+
+        MainContainer3_2 As groupContainer.horizontalAutoLayoutContainer:
+            Fill: =RGBA(255, 255, 255, 1)
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            LayoutWrap: =true
+            PaddingBottom: =10
+            PaddingLeft: =5
+            PaddingRight: =5
+            PaddingTop: =5
+            RadiusBottomLeft: =10
+            RadiusBottomRight: =10
+            RadiusTopLeft: =10
+            RadiusTopRight: =10
+            ZIndex: =3
+
+            FormCRCRequest As form.PowerApps_CoreControls_Form:
+                BorderColor: =App.Theme.Colors.Darker40
+                DataSource: ='CRC PowerApp Data'
+                Item: =GalleryCRCTrackerRequest.Selected
+                LayoutMinHeight: =250
+                LayoutMinWidth: =400
+                OnSuccess: |-
+                    =Notify("Request Successfully Submitted",NotificationType.Success); 
+                    Refresh('CDD Allocation Team');
+                    Navigate(ScreenRequests,ScreenTransition.None)
+                UseFluentV9Cards: =true
+                ZIndex: =1
+
+                Title_DataCard2_1 As typedDataCard.fluentV9TextualEditCard:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="Title"
+                    Default: =ThisItem.Title
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@'CRC PowerApp Data'],DataSourceInfo.DisplayName,Title)
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =70
+                    MaxLength: =DataSourceInfo([@'CRC PowerApp Data'], DataSourceInfo.MaxLength, Title)
+                    Required: =true
+                    Update: =DataCardValue11_1.Value
+                    Width: =441
+                    X: =0
+                    Y: =0
+                    ZIndex: =1
+
+                    DataCardKey11_1 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =22
+                        Text: =Parent.DisplayName
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =Parent.Width - 48
+                        Wrap: =false
+                        X: =24
+                        Y: =10
+                        ZIndex: =1
+
+                    "DataCardValue11_1 As 'Text input'":
+                        AccessibleLabel: =Parent.DisplayName
+                        DisplayMode: =DisplayMode.View
+                        Height: =32
+                        Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                        Required: =Parent.Required
+                        TriggerOutput: ="FocusOut"
+                        ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                        Value: =fnUserFullName
+                        Width: =Parent.Width - 48
+                        X: =24
+                        Y: =DataCardKey11_1.Y + DataCardKey11_1.Height + 4
+                        ZIndex: =2
+
+                    ErrorMessage11_1 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: =Parent.Error
+                        Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =Parent.Width - 48
+                        Wrap: =true
+                        X: =24
+                        Y: =DataCardValue11_1.Y + DataCardValue11_1.Height
+                        ZIndex: =3
+
+                    StarVisible11_1 As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        X: =0
+                        Y: =DataCardKey11_1.Y
+                        ZIndex: =4
+
+                Theme_DataCard2_1 As typedDataCard.fluentV9TextualEditCard:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="RequestType"
+                    Default: =ThisItem.Theme
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@'CRC PowerApp Data'],DataSourceInfo.DisplayName,Theme)
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =70
+                    MaxLength: =DataSourceInfo([@'CRC PowerApp Data'], DataSourceInfo.MaxLength, Theme)
+                    Required: =true
+                    Update: =DataCardValue12_1.Value
+                    Width: =441
+                    X: =1
+                    Y: =0
+                    ZIndex: =1
+
+                    DataCardKey12_1 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =22
+                        Text: =Parent.DisplayName
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =Parent.Width - 48
+                        Wrap: =false
+                        X: =24
+                        Y: =10
+                        ZIndex: =1
+
+                    "DataCardValue12_1 As 'Text input'":
+                        AccessibleLabel: =Parent.DisplayName
+                        DisplayMode: =Parent.DisplayMode
+                        Height: =32
+                        Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                        Required: =Parent.Required
+                        TriggerOutput: ="FocusOut"
+                        ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                        Value: =Parent.Default
+                        Width: =Parent.Width - 48
+                        X: =24
+                        Y: =DataCardKey12_1.Y + DataCardKey12_1.Height + 4
+                        ZIndex: =2
+
+                    ErrorMessage12_1 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: =Parent.Error
+                        Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =Parent.Width - 48
+                        Wrap: =true
+                        X: =24
+                        Y: =DataCardValue12_1.Y + DataCardValue12_1.Height
+                        ZIndex: =3
+
+                    StarVisible12_1 As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        X: =0
+                        Y: =DataCardKey12_1.Y
+                        ZIndex: =4
+
+                "'Client Type_DataCard2_1' As typedDataCard.fluentV9TextualEditCard":
+                    BorderColor: =App.Theme.Colors.Darker40
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="ClientType"
+                    Default: =ThisItem.'Client Type'
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@'CRC PowerApp Data'],DataSourceInfo.DisplayName,'Client Type')
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =70
+                    MaxLength: =DataSourceInfo([@'CRC PowerApp Data'], DataSourceInfo.MaxLength, 'Client Type')
+                    Required: =true
+                    Update: =DataCardValue13_1.Value
+                    Width: =441
+                    X: =2
+                    Y: =0
+                    ZIndex: =1
+
+                    DataCardKey13_1 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =22
+                        Text: =Parent.DisplayName
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =Parent.Width - 48
+                        Wrap: =false
+                        X: =24
+                        Y: =10
+                        ZIndex: =1
+
+                    "DataCardValue13_1 As 'Text input'":
+                        AccessibleLabel: =Parent.DisplayName
+                        DisplayMode: =Parent.DisplayMode
+                        Height: =34
+                        Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                        Required: =Parent.Required
+                        TriggerOutput: ="FocusOut"
+                        ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                        Value: =DropdownCanvasClientType_1.Selected.Value
+                        Width: =Parent.Width - 46
+                        X: =27
+                        Y: =DataCardKey13_1.Y + DataCardKey13_1.Height + 3
+                        ZIndex: =2
+
+                    ErrorMessage13_1 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: =Parent.Error
+                        Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =Parent.Width - 48
+                        Wrap: =true
+                        X: =24
+                        Y: =DataCardValue13_1.Y + DataCardValue13_1.Height
+                        ZIndex: =3
+
+                    StarVisible13_1 As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        X: =0
+                        Y: =DataCardKey13_1.Y
+                        ZIndex: =4
+
+                    DropdownCanvasClientType_1 As Dropdown.pcfdataset:
+                        DefaultSelectedItems: |-
+                            ={Value:Parent.Default}
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =32
+                        Items: =["New","Existing"]
+                        Width: =393
+                        X: =28
+                        Y: =36
+                        ZIndex: =5
+
+                "'Related Reference_DataCard1_1' As typedDataCard.fluentV9TextualEditCard":
+                    BorderColor: =App.Theme.Colors.Darker40
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="RelatedReference"
+                    Default: =ThisItem.'Related Reference'
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@'CRC PowerApp Data'],DataSourceInfo.DisplayName,'Related Reference')
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =70
+                    MaxLength: =DataSourceInfo([@'CRC PowerApp Data'], DataSourceInfo.MaxLength, 'Related Reference')
+                    Required: =true
+                    Update: =DataCardValue14_1.Value
+                    Width: =1323
+                    X: =0
+                    Y: =1
+                    ZIndex: =1
+
+                    DataCardKey14_1 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =22
+                        Text: ="Related media article"
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =Parent.Width - 48
+                        Wrap: =false
+                        X: =24
+                        Y: =10
+                        ZIndex: =1
+
+                    "DataCardValue14_1 As 'Text input'":
+                        AccessibleLabel: =Parent.DisplayName
+                        DisplayMode: =Parent.DisplayMode
+                        Height: =90
+                        Mode: ='TextInputCanvas.Mode'.Multiline
+                        Required: =Parent.Required
+                        TriggerOutput: ="FocusOut"
+                        ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                        Value: =Parent.Default
+                        Width: =Parent.Width - 48
+                        X: =24
+                        Y: =DataCardKey14_1.Y + DataCardKey14_1.Height + 4
+                        ZIndex: =2
+
+                    ErrorMessage14_1 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: =Parent.Error
+                        Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =Parent.Width - 48
+                        Wrap: =true
+                        X: =24
+                        Y: =DataCardValue14_1.Y + DataCardValue14_1.Height
+                        ZIndex: =3
+
+                    StarVisible14_1 As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        X: =0
+                        Y: =DataCardKey14_1.Y
+                        ZIndex: =4
+
+                "'Name of Customer_DataCard2_1' As typedDataCard.fluentV9TextualEditCard":
+                    BorderColor: =App.Theme.Colors.Darker40
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="NameofCustomer"
+                    Default: =ThisItem.'Name of Customer'
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@'CRC PowerApp Data'],DataSourceInfo.DisplayName,'Name of Customer')
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =70
+                    MaxLength: =DataSourceInfo([@'CRC PowerApp Data'], DataSourceInfo.MaxLength, 'Name of Customer')
+                    Required: =true
+                    Update: =DataCardValue15_1.Value
+                    Width: =441
+                    X: =0
+                    Y: =2
+                    ZIndex: =1
+
+                    DataCardKey15_1 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =22
+                        Text: =Parent.DisplayName
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =Parent.Width - 48
+                        Wrap: =false
+                        X: =24
+                        Y: =10
+                        ZIndex: =1
+
+                    "DataCardValue15_1 As 'Text input'":
+                        AccessibleLabel: =Parent.DisplayName
+                        DisplayMode: =Parent.DisplayMode
+                        Height: =32
+                        Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                        Required: =Parent.Required
+                        TriggerOutput: ="FocusOut"
+                        ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                        Value: =Parent.Default
+                        Width: =Parent.Width - 48
+                        X: =24
+                        Y: =DataCardKey15_1.Y + DataCardKey15_1.Height + 4
+                        ZIndex: =2
+
+                    ErrorMessage15_1 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: =Parent.Error
+                        Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =Parent.Width - 48
+                        Wrap: =true
+                        X: =24
+                        Y: =DataCardValue15_1.Y + DataCardValue15_1.Height
+                        ZIndex: =3
+
+                    StarVisible15_1 As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        X: =0
+                        Y: =DataCardKey15_1.Y
+                        ZIndex: =4
+
+                "'ID / Registration number_DataCard2_1' As typedDataCard.fluentV9TextualEditCard":
+                    BorderColor: =App.Theme.Colors.Darker40
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="ID_x002f_Registrationnumber"
+                    Default: =ThisItem.'ID / Registration number'
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@'CRC PowerApp Data'],DataSourceInfo.DisplayName,'ID / Registration number')
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =70
+                    MaxLength: =DataSourceInfo([@'CRC PowerApp Data'], DataSourceInfo.MaxLength, 'ID / Registration number')
+                    Required: =true
+                    Update: =DataCardValue16_1.Value
+                    Width: =441
+                    X: =1
+                    Y: =2
+                    ZIndex: =1
+
+                    DataCardKey16_1 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =22
+                        Text: =Parent.DisplayName
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =Parent.Width - 48
+                        Wrap: =false
+                        X: =24
+                        Y: =10
+                        ZIndex: =1
+
+                    "DataCardValue16_1 As 'Text input'":
+                        AccessibleLabel: =Parent.DisplayName
+                        DisplayMode: =Parent.DisplayMode
+                        Height: =32
+                        Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                        Required: =Parent.Required
+                        TriggerOutput: ="FocusOut"
+                        ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                        Value: =Parent.Default
+                        Width: =Parent.Width - 48
+                        X: =24
+                        Y: =DataCardKey16_1.Y + DataCardKey16_1.Height + 4
+                        ZIndex: =2
+
+                    ErrorMessage16_1 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: =Parent.Error
+                        Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =Parent.Width - 48
+                        Wrap: =true
+                        X: =24
+                        Y: =DataCardValue16_1.Y + DataCardValue16_1.Height
+                        ZIndex: =3
+
+                    StarVisible16_1 As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        X: =0
+                        Y: =DataCardKey16_1.Y
+                        ZIndex: =4
+
+                "'BPID/ CIF number_DataCard1_1' As typedDataCard.fluentV9TextualEditCard":
+                    BorderColor: =App.Theme.Colors.Darker40
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="BPID_x002f_CIFnumber"
+                    Default: =ThisItem.'BPID/ CIF number'
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@'CRC PowerApp Data'],DataSourceInfo.DisplayName,'BPID/ CIF number')
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =70
+                    MaxLength: =DataSourceInfo([@'CRC PowerApp Data'], DataSourceInfo.MaxLength, 'BPID/ CIF number')
+                    Required: =true
+                    Update: =DataCardValue17_1.Value
+                    Width: =441
+                    X: =2
+                    Y: =2
+                    ZIndex: =1
+
+                    DataCardKey17_1 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =22
+                        Text: =Parent.DisplayName
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =Parent.Width - 48
+                        Wrap: =false
+                        X: =24
+                        Y: =10
+                        ZIndex: =1
+
+                    "DataCardValue17_1 As 'Text input'":
+                        AccessibleLabel: =Parent.DisplayName
+                        DisplayMode: =Parent.DisplayMode
+                        Height: =32
+                        Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                        Required: =Parent.Required
+                        TriggerOutput: ="FocusOut"
+                        ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                        Value: =Parent.Default
+                        Width: =Parent.Width - 48
+                        X: =24
+                        Y: =DataCardKey17_1.Y + DataCardKey17_1.Height + 4
+                        ZIndex: =2
+
+                    ErrorMessage17_1 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: =Parent.Error
+                        Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =Parent.Width - 48
+                        Wrap: =true
+                        X: =24
+                        Y: =DataCardValue17_1.Y + DataCardValue17_1.Height
+                        ZIndex: =3
+
+                    StarVisible17_1 As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        X: =0
+                        Y: =DataCardKey17_1.Y
+                        ZIndex: =4
+
+                "'Segment / Business Unit_DataCard2_1' As typedDataCard.fluentV9TextualEditCard":
+                    BorderColor: =App.Theme.Colors.Darker40
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="Segment_x002f_BusinessUnit"
+                    Default: =ThisItem.'Segment / Business Unit'
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@'CRC PowerApp Data'],DataSourceInfo.DisplayName,'Segment / Business Unit')
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =70
+                    MaxLength: =DataSourceInfo([@'CRC PowerApp Data'], DataSourceInfo.MaxLength, 'Segment / Business Unit')
+                    Required: =true
+                    Update: =DataCardValue18_1.Value
+                    Width: =441
+                    X: =0
+                    Y: =3
+                    ZIndex: =1
+
+                    DataCardKey18_1 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =22
+                        Text: =Parent.DisplayName
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =Parent.Width - 48
+                        Wrap: =false
+                        X: =24
+                        Y: =10
+                        ZIndex: =1
+
+                    "DataCardValue18_1 As 'Text input'":
+                        AccessibleLabel: =Parent.DisplayName
+                        DisplayMode: =Parent.DisplayMode
+                        Height: =34
+                        Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                        Required: =Parent.Required
+                        TriggerOutput: ="FocusOut"
+                        ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                        Value: =DropdownCanvasSegment_1.Selected.Value
+                        Width: =Parent.Width - 46
+                        X: =27
+                        Y: =DataCardKey18_1.Y + DataCardKey18_1.Height + 3
+                        ZIndex: =2
+
+                    ErrorMessage18_1 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: =Parent.Error
+                        Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =Parent.Width - 48
+                        Wrap: =true
+                        X: =24
+                        Y: =DataCardValue18_1.Y + DataCardValue18_1.Height
+                        ZIndex: =3
+
+                    StarVisible18_1 As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        X: =0
+                        Y: =DataCardKey18_1.Y
+                        ZIndex: =4
+
+                    DropdownCanvasSegment_1 As Dropdown.pcfdataset:
+                        DefaultSelectedItems: |-
+                            ={Value:Parent.Default}
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =32
+                        Items: =["Business Client","Commercial Client"]
+                        Width: =393
+                        X: =28
+                        Y: =36
+                        ZIndex: =5
+
+                "'Reason for request_DataCard2_1' As typedDataCard.fluentV9TextualEditCard":
+                    BorderColor: =App.Theme.Colors.Darker40
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="Reasonforrequest"
+                    Default: =ThisItem.'Reason for request'
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@'CRC PowerApp Data'],DataSourceInfo.DisplayName,'Reason for request')
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =70
+                    MaxLength: =DataSourceInfo([@'CRC PowerApp Data'], DataSourceInfo.MaxLength, 'Reason for request')
+                    Required: =true
+                    Update: =DataCardValue19_1.Value
+                    Width: =1323
+                    X: =0
+                    Y: =4
+                    ZIndex: =1
+
+                    DataCardKey19_1 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =22
+                        Text: =Parent.DisplayName
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =Parent.Width - 48
+                        Wrap: =false
+                        X: =24
+                        Y: =10
+                        ZIndex: =1
+
+                    "DataCardValue19_1 As 'Text input'":
+                        AccessibleLabel: =Parent.DisplayName
+                        DisplayMode: =Parent.DisplayMode
+                        Height: =90
+                        Mode: ='TextInputCanvas.Mode'.Multiline
+                        Required: =Parent.Required
+                        TriggerOutput: ="FocusOut"
+                        ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                        Value: =Parent.Default
+                        Width: =Parent.Width - 48
+                        X: =24
+                        Y: =DataCardKey19_1.Y + DataCardKey19_1.Height + 4
+                        ZIndex: =2
+
+                    ErrorMessage19_1 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: =Parent.Error
+                        Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =Parent.Width - 48
+                        Wrap: =true
+                        X: =24
+                        Y: =DataCardValue19_1.Y + DataCardValue19_1.Height
+                        ZIndex: =3
+
+                    StarVisible19_1 As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        X: =0
+                        Y: =DataCardKey19_1.Y
+                        ZIndex: =4
+
+                "'Related Party_DataCard1_1' As typedDataCard.fluentV9TextualEditCard":
+                    BorderColor: =App.Theme.Colors.Darker40
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="RelatedParty"
+                    Default: =ThisItem.'Related Party'
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@'CRC PowerApp Data'],DataSourceInfo.DisplayName,'Related Party')
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =70
+                    MaxLength: =DataSourceInfo([@'CRC PowerApp Data'], DataSourceInfo.MaxLength, 'Related Party')
+                    Required: =true
+                    Update: =DataCardValue20_1.Value
+                    Width: =441
+                    X: =0
+                    Y: =5
+                    ZIndex: =1
+
+                    DataCardKey20_1 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =22
+                        Text: ="Information of Related Parties"
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =Parent.Width - 48
+                        Wrap: =false
+                        X: =24
+                        Y: =10
+                        ZIndex: =1
+
+                    "DataCardValue20_1 As 'Text input'":
+                        AccessibleLabel: =Parent.DisplayName
+                        DisplayMode: =Parent.DisplayMode
+                        Height: =32
+                        Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                        Required: =Parent.Required
+                        TriggerOutput: ="FocusOut"
+                        ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                        Value: =Parent.Default
+                        Width: =Parent.Width - 48
+                        X: =24
+                        Y: =DataCardKey20_1.Y + DataCardKey20_1.Height + 4
+                        ZIndex: =2
+
+                    ErrorMessage20_1 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: =Parent.Error
+                        Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =Parent.Width - 48
+                        Wrap: =true
+                        X: =24
+                        Y: =DataCardValue20_1.Y + DataCardValue20_1.Height
+                        ZIndex: =3
+
+                    StarVisible20_1 As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        X: =0
+                        Y: =DataCardKey20_1.Y
+                        ZIndex: =4
+
+                "'Full EDD/ screening_DataCard1_1' As typedDataCard.fluentV9TextualEditCard":
+                    BorderColor: =App.Theme.Colors.Darker40
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="FullEDD_x002f_screening"
+                    Default: =ThisItem.'Full EDD/ screening'
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@'CRC PowerApp Data'],DataSourceInfo.DisplayName,'Full EDD/ screening')
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =70
+                    MaxLength: =DataSourceInfo([@'CRC PowerApp Data'], DataSourceInfo.MaxLength, 'Full EDD/ screening')
+                    Required: =true
+                    Update: =DataCardValue21_1.Value
+                    Width: =441
+                    X: =1
+                    Y: =5
+                    ZIndex: =1
+
+                    DataCardKey21_1 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =22
+                        Text: =Parent.DisplayName
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =Parent.Width - 48
+                        Wrap: =false
+                        X: =24
+                        Y: =10
+                        ZIndex: =1
+
+                    "DataCardValue21_1 As 'Text input'":
+                        AccessibleLabel: =Parent.DisplayName
+                        DisplayMode: =Parent.DisplayMode
+                        Height: =34
+                        Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                        Required: =Parent.Required
+                        TriggerOutput: ="FocusOut"
+                        ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                        Value: =DropdownCanvasFullEddORScreening_1.Selected.Value
+                        Width: =Parent.Width - 46
+                        X: =27
+                        Y: =DataCardKey21_1.Y + DataCardKey21_1.Height + 3
+                        ZIndex: =2
+
+                    ErrorMessage21_1 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: =Parent.Error
+                        Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =Parent.Width - 48
+                        Wrap: =true
+                        X: =24
+                        Y: =DataCardValue21_1.Y + DataCardValue21_1.Height
+                        ZIndex: =3
+
+                    StarVisible21_1 As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        X: =0
+                        Y: =DataCardKey21_1.Y
+                        ZIndex: =4
+
+                    DropdownCanvasFullEddORScreening_1 As Dropdown.pcfdataset:
+                        DefaultSelectedItems: |-
+                            ={Value:Parent.Default}
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =32
+                        Items: =["Full EDD","Screening only"]
+                        Width: =393
+                        X: =28
+                        Y: =36
+                        ZIndex: =5
+
+                "'Updated SOF held_DataCard1_1' As typedDataCard.fluentV9TextualEditCard":
+                    BorderColor: =App.Theme.Colors.Darker40
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="UpdatedSOFheld"
+                    Default: =ThisItem.'Updated SOF held'
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@'CRC PowerApp Data'],DataSourceInfo.DisplayName,'Updated SOF held')
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =70
+                    MaxLength: =DataSourceInfo([@'CRC PowerApp Data'], DataSourceInfo.MaxLength, 'Updated SOF held')
+                    Required: =true
+                    Update: =DataCardValue22_1.Value
+                    Width: =441
+                    X: =2
+                    Y: =5
+                    ZIndex: =1
+
+                    DataCardKey22_1 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =22
+                        Text: =Parent.DisplayName
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =Parent.Width - 48
+                        Wrap: =false
+                        X: =24
+                        Y: =10
+                        ZIndex: =1
+
+                    "DataCardValue22_1 As 'Text input'":
+                        AccessibleLabel: =Parent.DisplayName
+                        DisplayMode: =Parent.DisplayMode
+                        Height: =34
+                        Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                        Required: =Parent.Required
+                        TriggerOutput: ="FocusOut"
+                        ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                        Value: =DropdownCanvasUpdateSOFheld_1.Selected.Value
+                        Width: =Parent.Width - 46
+                        X: =27
+                        Y: =DataCardKey22_1.Y + DataCardKey22_1.Height + 3
+                        ZIndex: =2
+
+                    ErrorMessage22_1 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: =Parent.Error
+                        Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =Parent.Width - 48
+                        Wrap: =true
+                        X: =24
+                        Y: =DataCardValue22_1.Y + DataCardValue22_1.Height
+                        ZIndex: =3
+
+                    StarVisible22_1 As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        X: =0
+                        Y: =DataCardKey22_1.Y
+                        ZIndex: =4
+
+                    DropdownCanvasUpdateSOFheld_1 As Dropdown.pcfdataset:
+                        DefaultSelectedItems: |-
+                            ={Value:Parent.Default}
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =32
+                        Items: =["Yes","No"]
+                        Width: =393
+                        X: =28
+                        Y: =36
+                        ZIndex: =5
+
+                "'Updated SOF Reason_DataCard1_1' As typedDataCard.fluentV9TextualEditCard":
+                    BorderColor: =App.Theme.Colors.Darker40
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="UpdatedSOFReason"
+                    Default: =ThisItem.'Updated SOF Reason'
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@'CRC PowerApp Data'],DataSourceInfo.DisplayName,'Updated SOF Reason')
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =70
+                    MaxLength: =DataSourceInfo([@'CRC PowerApp Data'], DataSourceInfo.MaxLength, 'Updated SOF Reason')
+                    Required: =If(DropdownCanvasUpdateSOFheld_1.Selected.Value ="No",true,false)
+                    Update: =DataCardValue23_1.Value
+                    Visible: =If(DropdownCanvasUpdateSOFheld_1.Selected.Value ="No",true,false)
+                    Width: =1323
+                    X: =0
+                    Y: =6
+                    ZIndex: =1
+
+                    DataCardKey23_1 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =22
+                        Text: ="Provide reason for not obtaining updated Source of Funds"
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =Parent.Width - 48
+                        Wrap: =false
+                        X: =24
+                        Y: =10
+                        ZIndex: =1
+
+                    "DataCardValue23_1 As 'Text input'":
+                        AccessibleLabel: =Parent.DisplayName
+                        DisplayMode: =Parent.DisplayMode
+                        Height: =90
+                        Mode: ='TextInputCanvas.Mode'.Multiline
+                        Required: =Parent.Required
+                        TriggerOutput: ="FocusOut"
+                        ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                        Value: =Parent.Default
+                        Width: =Parent.Width - 48
+                        X: =24
+                        Y: =DataCardKey23_1.Y + DataCardKey23_1.Height + 4
+                        ZIndex: =2
+
+                    ErrorMessage23_1 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: =Parent.Error
+                        Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =Parent.Width - 48
+                        Wrap: =true
+                        X: =24
+                        Y: =DataCardValue23_1.Y + DataCardValue23_1.Height
+                        ZIndex: =3
+
+                    StarVisible23_1 As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        X: =0
+                        Y: =DataCardKey23_1.Y
+                        ZIndex: =4
+
+                "'Type of SOF held_DataCard1_1' As typedDataCard.fluentV9TextualEditCard":
+                    BorderColor: =App.Theme.Colors.Darker40
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="TypeofSOFheld"
+                    Default: =ThisItem.'Type of SOF held'
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@'CRC PowerApp Data'],DataSourceInfo.DisplayName,'Type of SOF held')
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =70
+                    MaxLength: =DataSourceInfo([@'CRC PowerApp Data'], DataSourceInfo.MaxLength, 'Type of SOF held')
+                    Required: =true
+                    Update: =DataCardValue24_1.Value
+                    Width: =882
+                    X: =0
+                    Y: =7
+                    ZIndex: =1
+
+                    DataCardKey24_1 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =22
+                        Text: ="Type of Source of Funds Held?"
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =Parent.Width - 48
+                        Wrap: =false
+                        X: =24
+                        Y: =10
+                        ZIndex: =1
+
+                    "DataCardValue24_1 As 'Text input'":
+                        AccessibleLabel: =Parent.DisplayName
+                        DisplayMode: =Parent.DisplayMode
+                        Height: =34
+                        Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                        Required: =Parent.Required
+                        TriggerOutput: ="FocusOut"
+                        ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                        Value: =Parent.Default
+                        Width: =393
+                        X: =24
+                        Y: =DataCardKey24_1.Y + DataCardKey24_1.Height + 4
+                        ZIndex: =2
+
+                    ErrorMessage24_1 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: =Parent.Error
+                        Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =Parent.Width - 48
+                        Wrap: =true
+                        X: =24
+                        Y: =DataCardValue24_1.Y + DataCardValue24_1.Height
+                        ZIndex: =3
+
+                    StarVisible24_1 As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        X: =0
+                        Y: =DataCardKey24_1.Y
+                        ZIndex: =4
+
+                "'Customer 1st Updated_DataCard1_1' As typedDataCard.fluentV9TextualEditCard":
+                    BorderColor: =App.Theme.Colors.Darker40
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="Customer1stUpdated"
+                    Default: =ThisItem.'Customer 1st Updated'
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@'CRC PowerApp Data'],DataSourceInfo.DisplayName,'Customer 1st Updated')
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =91
+                    MaxLength: =DataSourceInfo([@'CRC PowerApp Data'], DataSourceInfo.MaxLength, 'Customer 1st Updated')
+                    Required: =true
+                    Update: =DataCardValue25_1.Value
+                    Width: =1323
+                    X: =0
+                    Y: =8
+                    ZIndex: =1
+
+                    DataCardKey25_2 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        FontColor: =RGBA(215, 58, 60, 1)
+                        Height: =22
+                        Size: =15
+                        Text: |-
+                            ="Please make a selection:"
+                        Weight: ='TextCanvas.Weight'.Bold
+                        Width: =Parent.Width - 48
+                        Wrap: =false
+                        X: =24
+                        Y: =10
+                        ZIndex: =1
+
+                    "DataCardValue25_1 As 'Text input'":
+                        AccessibleLabel: =Parent.DisplayName
+                        DisplayMode: =Parent.DisplayMode
+                        Height: =34
+                        Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                        Required: =Parent.Required
+                        TriggerOutput: ="FocusOut"
+                        ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                        Value: =DropdownCanvasCustomerfirstUpdated_1.Selected.Value
+                        Width: =395
+                        X: =27
+                        Y: =52
+                        ZIndex: =2
+
+                    ErrorMessage25_1 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: =Parent.Error
+                        Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =Parent.Width - 48
+                        Wrap: =true
+                        X: =24
+                        Y: =DataCardValue25_1.Y + DataCardValue25_1.Height
+                        ZIndex: =3
+
+                    StarVisible25_1 As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        X: =0
+                        Y: =DataCardKey25_2.Y
+                        ZIndex: =4
+
+                    DropdownCanvasCustomerfirstUpdated_1 As Dropdown.pcfdataset:
+                        DefaultSelectedItems: |-
+                            ={Value:Parent.Default}
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =32
+                        Items: =["Yes","No"]
+                        Width: =393
+                        X: =28
+                        Y: =53
+                        ZIndex: =5
+
+                    DataCardKey25_3 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =22
+                        Text: ="Has Source of Funds been updated on Customer 1st?"
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =Parent.Width - 48
+                        Wrap: =false
+                        X: =24
+                        Y: =32
+                        ZIndex: =6
+
+                "'Reason SOF no Customer 1st_DataCard1_1' As typedDataCard.fluentV9TextualEditCard":
+                    BorderColor: =App.Theme.Colors.Darker40
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="ReasonSOFnoCustomer1st"
+                    Default: =ThisItem.'Reason SOF no Customer 1st'
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@'CRC PowerApp Data'],DataSourceInfo.DisplayName,'Reason SOF no Customer 1st')
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =70
+                    MaxLength: =DataSourceInfo([@'CRC PowerApp Data'], DataSourceInfo.MaxLength, 'Reason SOF no Customer 1st')
+                    Required: =If(DropdownCanvasCustomerfirstUpdated_1.Selected.Value="No",true,false)
+                    Update: =DataCardValue26_1.Value
+                    Visible: =If(DropdownCanvasCustomerfirstUpdated_1.Selected.Value="No",true,false)
+                    Width: =1323
+                    X: =0
+                    Y: =9
+                    ZIndex: =1
+
+                    DataCardKey26_1 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =22
+                        Text: =Parent.DisplayName
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =Parent.Width - 48
+                        Wrap: =false
+                        X: =24
+                        Y: =10
+                        ZIndex: =1
+
+                    "DataCardValue26_1 As 'Text input'":
+                        AccessibleLabel: =Parent.DisplayName
+                        DisplayMode: =Parent.DisplayMode
+                        Height: =90
+                        Mode: ='TextInputCanvas.Mode'.Multiline
+                        Required: =Parent.Required
+                        TriggerOutput: ="FocusOut"
+                        ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                        Value: =Parent.Default
+                        Width: =Parent.Width - 48
+                        X: =24
+                        Y: =DataCardKey26_1.Y + DataCardKey26_1.Height + 4
+                        ZIndex: =2
+
+                    ErrorMessage26_1 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: =Parent.Error
+                        Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =Parent.Width - 48
+                        Wrap: =true
+                        X: =24
+                        Y: =DataCardValue26_1.Y + DataCardValue26_1.Height
+                        ZIndex: =3
+
+                    StarVisible26_1 As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        X: =0
+                        Y: =DataCardKey26_1.Y
+                        ZIndex: =4
+
+                "'documents Uploaded_DataCard1_1' As typedDataCard.fluentV9TextualEditCard":
+                    BorderColor: =App.Theme.Colors.Darker40
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="documentsUploaded"
+                    Default: =ThisItem.'documents Uploaded'
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@'CRC PowerApp Data'],DataSourceInfo.DisplayName,'documents Uploaded')
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =70
+                    MaxLength: =DataSourceInfo([@'CRC PowerApp Data'], DataSourceInfo.MaxLength, 'documents Uploaded')
+                    Required: =true
+                    Update: =DataCardValue27_1.Value
+                    Width: =441
+                    X: =0
+                    Y: =10
+                    ZIndex: =1
+
+                    DataCardKey27_1 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =22
+                        Text: ="Has all documents been uploaded?"
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =Parent.Width - 48
+                        Wrap: =false
+                        X: =24
+                        Y: =10
+                        ZIndex: =1
+
+                    "DataCardValue27_1 As 'Text input'":
+                        AccessibleLabel: =Parent.DisplayName
+                        DisplayMode: =DisplayMode.View
+                        Height: =32
+                        Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                        Required: =Parent.Required
+                        TriggerOutput: ="FocusOut"
+                        ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                        Value: =If(ToggleUploadedDocs_1.Checked,"Yes","No")
+                        Width: =50
+                        X: =89
+                        Y: =38
+                        ZIndex: =2
+
+                    ErrorMessage27_1 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: =Parent.Error
+                        Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =Parent.Width - 48
+                        Wrap: =true
+                        X: =24
+                        Y: =DataCardValue27_1.Y + DataCardValue27_1.Height
+                        ZIndex: =3
+
+                    StarVisible27_1 As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        X: =0
+                        Y: =DataCardKey27_1.Y
+                        ZIndex: =4
+
+                    ToggleUploadedDocs_1 As Toggle:
+                        Checked: =If(Parent.Default ="Yes",true,false)
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =28
+                        Label: =""
+                        OnCheck: =false
+                        OnUncheck: =false
+                        Width: =110
+                        X: =24
+                        Y: =40
+                        ZIndex: =5
+
+                SLA_Due_DateDT_DataCard1_1 As typedDataCard.fluentV9DateEditCard:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="SLA_Due_DateDT"
+                    Default: =ThisItem.SLA_Due_DateDT
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@'CRC PowerApp Data'],DataSourceInfo.DisplayName,SLA_Due_DateDT)
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =70
+                    Required: =false
+                    Update: =DataCardValue28_1.SelectedDate
+                    Width: =441
+                    X: =1
+                    Y: =10
+                    ZIndex: =1
+
+                    DataCardKey28_1 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =22
+                        Text: =Parent.DisplayName
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =Parent.Width - 48
+                        Wrap: =false
+                        X: =24
+                        Y: =10
+                        ZIndex: =1
+
+                    "DataCardValue28_1 As 'Date picker'":
+                        AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                        DisplayMode: =Parent.DisplayMode
+                        EndDate: =Date(Year(Today())+100, 12, 31)
+                        Height: =32
+                        SelectedDate: =Parent.Default
+                        StartDate: =Date(1900, 1, 1)
+                        ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                        Width: =Parent.Width - 48
+                        X: =24
+                        Y: =DataCardKey28_1.Y + DataCardKey28_1.Height + 4
+                        ZIndex: =2
+
+                    ErrorMessage28_1 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: =Parent.Error
+                        Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =Parent.Width - 48
+                        Wrap: =true
+                        X: =24
+                        Y: =DataCardValue28_1.Y + DataCardValue28_1.Height
+                        ZIndex: =3
+
+                    StarVisible28_1 As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        X: =0
+                        Y: =DataCardKey28_1.Y
+                        ZIndex: =4
+
+                "'Approval Status_DataCard1_1' As typedDataCard.fluentV9TextualEditCard":
+                    BorderColor: =App.Theme.Colors.Darker40
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="ApprovalStatus"
+                    Default: =ThisItem.'Approval Status'
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@'CRC PowerApp Data'],DataSourceInfo.DisplayName,'Approval Status')
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =70
+                    MaxLength: =DataSourceInfo([@'CRC PowerApp Data'], DataSourceInfo.MaxLength, 'Approval Status')
+                    Required: =false
+                    Update: =DataCardValue1_1.Value
+                    Visible: =false
+                    Width: =441
+                    X: =2
+                    Y: =10
+                    ZIndex: =1
+
+                    DataCardKey1_1 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =22
+                        Text: =Parent.DisplayName
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =Parent.Width - 48
+                        Wrap: =false
+                        X: =24
+                        Y: =10
+                        ZIndex: =1
+
+                    "DataCardValue1_1 As 'Text input'":
+                        AccessibleLabel: =Parent.DisplayName
+                        DisplayMode: =Parent.DisplayMode
+                        Height: =32
+                        Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                        Required: =Parent.Required
+                        TriggerOutput: ="FocusOut"
+                        ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                        Value: =If(varRequestType="New Request","Awaiting Approval",Parent.Default)
+                        Width: =Parent.Width - 48
+                        X: =24
+                        Y: =DataCardKey1_1.Y + DataCardKey1_1.Height + 4
+                        ZIndex: =2
+
+                    ErrorMessage1_1 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: =Parent.Error
+                        Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =Parent.Width - 48
+                        Wrap: =true
+                        X: =24
+                        Y: =DataCardValue1_1.Y + DataCardValue1_1.Height
+                        ZIndex: =3
+
+                    StarVisible1_1 As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        X: =0
+                        Y: =DataCardKey1_1.Y
+                        ZIndex: =4
+
+                "'Requester Email_DataCard1' As typedDataCard.fluentV9TextualEditCard":
+                    BorderColor: =App.Theme.Colors.Darker40
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="RequesterEmail"
+                    Default: =ThisItem.'Requester Email'
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@'CRC PowerApp Data'],DataSourceInfo.DisplayName,'Requester Email')
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =70
+                    MaxLength: =DataSourceInfo([@'CRC PowerApp Data'], DataSourceInfo.MaxLength, 'Requester Email')
+                    Required: =false
+                    Update: =DataCardValue5.Value
+                    Visible: =false
+                    Width: =441
+                    X: =0
+                    Y: =11
+                    ZIndex: =1
+
+                    DataCardKey5 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =22
+                        Text: =Parent.DisplayName
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =Parent.Width - 48
+                        Wrap: =false
+                        X: =24
+                        Y: =10
+                        ZIndex: =1
+
+                    "DataCardValue5 As 'Text input'":
+                        AccessibleLabel: =Parent.DisplayName
+                        DisplayMode: =Parent.DisplayMode
+                        Height: =32
+                        Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                        Required: =Parent.Required
+                        ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                        Value: =fnUserEmail
+                        Width: =Parent.Width - 48
+                        X: =24
+                        Y: =DataCardKey5.Y + DataCardKey5.Height + 4
+                        ZIndex: =2
+
+                    ErrorMessage5 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: =Parent.Error
+                        Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =Parent.Width - 48
+                        Wrap: =true
+                        X: =24
+                        Y: =DataCardValue5.Y + DataCardValue5.Height
+                        ZIndex: =3
+
+                    StarVisible5 As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        X: =0
+                        Y: =DataCardKey5.Y
+                        ZIndex: =4
+
+        Container4_2 As groupContainer.horizontalAutoLayoutContainer:
+            BorderStyle: =BorderStyle.None
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: =0
+            Height: =50
+            LayoutJustifyContent: =LayoutJustifyContent.End
+            LayoutMinHeight: =20
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            PaddingBottom: =5
+            PaddingLeft: =20
+            PaddingRight: =5
+            PaddingTop: =5
+            RadiusBottomLeft: =5
+            RadiusBottomRight: =5
+            RadiusTopLeft: =5
+            RadiusTopRight: =5
+            ZIndex: =4
+
+            ButtonCanvas1_2 As Button:
+                AlignInContainer: =AlignInContainer.Stretch
+                Appearance: ='ButtonCanvas.Appearance'.Primary
+                DisplayMode: =If("Awaiting Approval" in varRequestType ,DisplayMode.Disabled,DisplayMode.Edit)
+                Height: =32
+                Icon: ="Checkmark"
+                IconStyle: ='ButtonCanvas.IconStyle'.Filled
+                Layout: ='ButtonCanvas.Layout'.IconAfter
+                LayoutMinHeight: =32
+                LayoutMinWidth: =96
+                OnSelect: =SubmitForm(FormCRCRequest)
+                Text: ="Submit"
+                Width: =150
+                X: =0
+                Y: =0
+                ZIndex: =1
+

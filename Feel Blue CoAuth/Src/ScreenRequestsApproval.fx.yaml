@@ -1,0 +1,555 @@
+"ScreenRequestsApproval As screen.'headerTableLayout_ver1.0'":
+    Fill: =Color.White
+    LoadingSpinner: =LoadingSpinner.Controls
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+    OnVisible: =Set(varSort,SortOrder.Descending)
+
+    ScreenContainer2_1 As groupContainer.verticalAutoLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(214, 221, 224, 1)
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =5
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =16
+        PaddingLeft: =16
+        PaddingRight: =16
+        PaddingTop: =16
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =Parent.Width
+        ZIndex: =1
+
+        HeaderContainer2_3 As groupContainer.horizontalAutoLayoutContainer:
+            DropShadow: =DropShadow.Light
+            FillPortions: =0
+            Height: =75
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =8
+            RadiusBottomRight: =8
+            RadiusTopLeft: =8
+            RadiusTopRight: =8
+            ZIndex: =1
+
+            Header2_1 As Header:
+                AlignInContainer: =AlignInContainer.Start
+                DisplayMode: =DisplayMode.Edit
+                Height: =75
+                LayoutMinHeight: =75
+                LayoutMinWidth: =Parent.Width
+                Logo: ='SB-Sheild-CMYK2'
+                OnSelectLogo: =false
+                Title: ="Requests Awaiting Approval"
+                TitleFontSize: =30
+                UserEmail: =User().Email
+                UserImage: =User().Image
+                UserName: =User().FullName
+                Width: =Parent.Width
+                X: =0
+                Y: =0
+                ZIndex: =3
+
+        HeaderContainer2_4 As groupContainer.horizontalAutoLayoutContainer:
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(39, 113, 194, 1)
+            FillPortions: =0
+            Height: =50
+            LayoutGap: =10
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            PaddingBottom: =5
+            PaddingLeft: =5
+            PaddingRight: =5
+            PaddingTop: =5
+            RadiusBottomLeft: =8
+            RadiusBottomRight: =8
+            RadiusTopLeft: =8
+            RadiusTopRight: =8
+            ZIndex: =2
+
+            Icon1_3 As icon.Reload:
+                AlignInContainer: =AlignInContainer.Center
+                BorderColor: =App.Theme.Colors.Darker40
+                Color: |
+                    =Color.White
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(244, 244, 244, 1)
+                Height: =Parent.Height
+                Icon: =Icon.Home
+                OnSelect: =Navigate(ScreenHome,ScreenTransition.None)
+                PaddingBottom: =10
+                PaddingTop: =10
+                ZIndex: =1
+
+            Label1_2 As label:
+                Align: =Align.Right
+                BorderColor: =App.Theme.Colors.Darker40
+                Color: =RGBA(255, 255, 255, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                FillPortions: =1
+                Font: =App.Theme.Font
+                FontWeight: =FontWeight.Semibold
+                Size: =13
+                Text: ="Filter"
+                ZIndex: =2
+
+            "TextInputCanvasSearch As 'Text input'":
+                AccessibleLabel: ="Search by Customer Name"
+                AlignInContainer: =AlignInContainer.Center
+                DisplayMode: =DisplayMode.Edit
+                Height: =32
+                LayoutMinHeight: =32
+                LayoutMinWidth: =320
+                Placeholder: ="Search by Customer Name"
+                TriggerOutput: ="FocusOut"
+                Width: =320
+                X: =0
+                Y: =0
+                ZIndex: =3
+
+            Label1_5 As label:
+                Align: =Align.Right
+                BorderColor: =App.Theme.Colors.Darker40
+                Color: =RGBA(255, 255, 255, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Font: =App.Theme.Font
+                FontWeight: =FontWeight.Semibold
+                Size: =13
+                Text: ="Status"
+                Width: =80
+                ZIndex: =4
+
+            DropdownCanvasStatusFilter As Dropdown.pcfdataset:
+                AccessibleLabel: ="Status"
+                AlignInContainer: =AlignInContainer.Center
+                DisplayMode: =DisplayMode.Edit
+                Height: =32
+                Items: =["1st Approval","2nd Approval","Rejected","Archived"]
+                LayoutMinHeight: =32
+                LayoutMinWidth: =320
+                Width: =320
+                X: =0
+                Y: =0
+                ZIndex: =5
+
+            Icon1_1 As icon.Reload:
+                AlignInContainer: =AlignInContainer.Center
+                BorderColor: =App.Theme.Colors.Darker40
+                Color: |
+                    =Color.White
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(244, 244, 244, 1)
+                Height: =Parent.Height
+                Icon: =Icon.Sort
+                OnSelect: |-
+                    =If(varSort =SortOrder.Descending,
+                        Set(varSort,SortOrder.Ascending),
+                        Set(varSort,SortOrder.Descending)
+                    )
+                PaddingBottom: =10
+                PaddingTop: =10
+                Tooltip: ="Sort by Date"
+                Width: =50
+                ZIndex: =6
+
+            Icon1_4 As icon.Reload:
+                AlignInContainer: =AlignInContainer.Center
+                BorderColor: =App.Theme.Colors.Darker40
+                Color: |
+                    =Color.White
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(244, 244, 244, 1)
+                Height: =Parent.Height
+                Icon: =Icon.Reload
+                OnSelect: =Reset(DropdownCanvasStatusFilter);Reset(TextInputCanvasSearch)
+                PaddingBottom: =10
+                PaddingTop: =10
+                Tooltip: ="Refresh"
+                Width: =50
+                ZIndex: =7
+
+            Label1_4 As label:
+                Align: =Align.Center
+                BorderColor: =App.Theme.Colors.Darker40
+                Color: =RGBA(255, 255, 255, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                FillPortions: =1
+                Font: =App.Theme.Font
+                Size: =13
+                Text: =
+                ZIndex: =8
+
+        MainContainer2_1 As groupContainer.horizontalAutoLayoutContainer:
+            Fill: =RGBA(255, 255, 255, 1)
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            LayoutWrap: =true
+            RadiusBottomLeft: =8
+            RadiusBottomRight: =8
+            RadiusTopLeft: =8
+            RadiusTopRight: =8
+            Width: =1000
+            ZIndex: =3
+
+            ContainerGalleryTableheader_1 As groupContainer.horizontalAutoLayoutContainer:
+                DropShadow: =DropShadow.Light
+                Fill: =gblAppColors.GrayLight
+                FillPortions: =0
+                Height: =50
+                LayoutMinHeight: =50
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                PaddingLeft: =10
+                PaddingRight: =10
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                ZIndex: =1
+
+                LabelDate_6 As label:
+                    AlignInContainer: =AlignInContainer.Stretch
+                    BorderColor: =App.Theme.Colors.Darker40
+                    Color: =RGBA(0, 0, 0, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    Font: =App.Theme.Font
+                    FontWeight: =FontWeight.Semibold
+                    PaddingBottom: =0
+                    PaddingLeft: =10
+                    PaddingRight: =10
+                    PaddingTop: =0
+                    Size: =13
+                    Text: ="Date"
+                    Width: =120
+                    ZIndex: =1
+
+                LabelDate_7 As label:
+                    AlignInContainer: =AlignInContainer.Stretch
+                    BorderColor: =App.Theme.Colors.Darker40
+                    Color: =RGBA(0, 0, 0, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    Font: =App.Theme.Font
+                    FontWeight: =FontWeight.Semibold
+                    PaddingBottom: =0
+                    PaddingLeft: =10
+                    PaddingRight: =10
+                    PaddingTop: =0
+                    Size: =13
+                    Text: ="Name of Customer"
+                    Width: =250
+                    ZIndex: =2
+
+                LabelDate_8 As label:
+                    AlignInContainer: =AlignInContainer.Stretch
+                    BorderColor: =App.Theme.Colors.Darker40
+                    Color: =RGBA(0, 0, 0, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    Font: =App.Theme.Font
+                    FontWeight: =FontWeight.Semibold
+                    PaddingBottom: =0
+                    PaddingLeft: =10
+                    PaddingRight: =10
+                    PaddingTop: =0
+                    Size: =13
+                    Text: ="Segment / Business Unit"
+                    Width: =200
+                    ZIndex: =3
+
+                LabelDate_9 As label:
+                    AlignInContainer: =AlignInContainer.Stretch
+                    BorderColor: =App.Theme.Colors.Darker40
+                    Color: =RGBA(0, 0, 0, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    Font: =App.Theme.Font
+                    FontWeight: =FontWeight.Semibold
+                    PaddingBottom: =0
+                    PaddingLeft: =10
+                    PaddingRight: =10
+                    PaddingTop: =0
+                    Size: =13
+                    Text: ="BPID/ CIF Number"
+                    ZIndex: =4
+
+                LabelDate_10 As label:
+                    AlignInContainer: =AlignInContainer.Stretch
+                    BorderColor: =App.Theme.Colors.Darker40
+                    Color: =RGBA(0, 0, 0, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    Font: =App.Theme.Font
+                    FontWeight: =FontWeight.Semibold
+                    PaddingBottom: =0
+                    PaddingLeft: =10
+                    PaddingRight: =10
+                    PaddingTop: =0
+                    Size: =13
+                    Text: ="Cleint Type"
+                    ZIndex: =5
+
+                LabelDate_11 As label:
+                    AlignInContainer: =AlignInContainer.Stretch
+                    BorderColor: =App.Theme.Colors.Darker40
+                    Color: =RGBA(0, 0, 0, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    Font: =App.Theme.Font
+                    FontWeight: =FontWeight.Semibold
+                    PaddingBottom: =0
+                    PaddingLeft: =10
+                    PaddingRight: =10
+                    PaddingTop: =0
+                    Size: =13
+                    Text: ="Theme"
+                    ZIndex: =6
+
+                LabelApproval_1 As label:
+                    Align: =Align.Center
+                    AlignInContainer: =AlignInContainer.Stretch
+                    BorderColor: =App.Theme.Colors.Darker40
+                    Color: =RGBA(0, 0, 0, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    Font: =App.Theme.Font
+                    FontWeight: =FontWeight.Semibold
+                    PaddingBottom: =0
+                    PaddingLeft: =10
+                    PaddingRight: =10
+                    PaddingTop: =0
+                    Size: =13
+                    Text: ="Approval Status"
+                    Width: =200
+                    ZIndex: =7
+
+            ContainerGalleryTableData_1 As groupContainer.horizontalAutoLayoutContainer:
+                DropShadow: =DropShadow.Light
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                ZIndex: =2
+
+                "GalleryCRCTrackerRequestApproval As gallery.'BrowseLayout_Vertical_OneTextVariant_ver5.0'":
+                    BorderColor: =App.Theme.Colors.Darker40
+                    DelayItemLoading: =true
+                    Items: |-
+                        =Filter(SortByColumns(
+                            Switch(DropdownCanvasStatusFilter.Selected.Value,
+                                "1st Approval",
+                                        Filter('CRC PowerApp Data','Approval Status' = "Awaiting Approval"),
+                                    "2nd Approval",
+                                        Filter('CRC PowerApp Data','2nd Approval Status' = "Awaiting Approval"),
+                                    "Rejected",
+                                        Filter('CRC PowerApp Data','Approval Status' = "Rejected"),
+                                    "Approved",
+                                        Filter('CRC PowerApp Data','2nd Approval Status' = "Approved"),
+                                    "Archived",
+                                        Filter('CRC PowerApp Data','Approval Status' = "Archived"),
+                                        'CRC PowerApp Data'
+                            ),"DateTimeSharepoint",varSort
+                        ),TextInputCanvasSearch.Value in 'Name of Customer')
+                    Layout: =Layout.Vertical
+                    LayoutMinHeight: =287
+                    LayoutMinWidth: =320
+                    LoadingSpinner: =LoadingSpinner.Data
+                    TemplatePadding: =0
+                    TemplateSize: =70
+                    ZIndex: =1
+
+                    Separator2_1 As rectangle:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        Fill: =RGBA(180, 214, 250, 1)
+                        Height: =2
+                        OnSelect: =Select(Parent)
+                        Width: =Parent.TemplateWidth
+                        Y: =Parent.TemplateHeight - Self.Height
+                        ZIndex: =1
+
+                    Rectangle2_1 As rectangle:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        Fill: =App.Theme.Colors.Darker30
+                        Height: =Parent.TemplateHeight - Separator2_1.Height
+                        OnSelect: =Select(Parent)
+                        Visible: =ThisItem.IsSelected
+                        Width: =4
+                        ZIndex: =2
+
+                    ContainerTableData_1 As groupContainer.horizontalAutoLayoutContainer:
+                        DropShadow: =DropShadow.Light
+                        Height: =Parent.TemplateHeight
+                        LayoutAlignItems: =LayoutAlignItems.Stretch
+                        LayoutMode: =LayoutMode.Auto
+                        PaddingBottom: =5
+                        PaddingLeft: =10
+                        PaddingRight: =10
+                        PaddingTop: =5
+                        RadiusBottomLeft: =4
+                        RadiusBottomRight: =4
+                        RadiusTopLeft: =4
+                        RadiusTopRight: =4
+                        Width: =Parent.Width
+                        ZIndex: =3
+
+                        Label3_7 As label:
+                            BorderColor: =App.Theme.Colors.Darker40
+                            Color: =RGBA(0, 0, 0, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            PaddingBottom: =0
+                            PaddingLeft: =10
+                            PaddingRight: =10
+                            PaddingTop: =0
+                            Size: =12
+                            Text: =Text(ThisItem.DateTimeSharepoint, "dd/mm/yyyy") 
+                            Width: =120
+                            ZIndex: =1
+
+                        Label3_8 As label:
+                            BorderColor: =App.Theme.Colors.Darker40
+                            Color: =RGBA(0, 0, 0, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            FontWeight: =FontWeight.Semibold
+                            PaddingBottom: =0
+                            PaddingLeft: =10
+                            PaddingRight: =10
+                            PaddingTop: =0
+                            Size: =12
+                            Text: =ThisItem.'Name of Customer'
+                            Width: =250
+                            ZIndex: =2
+
+                        Label3_9 As label:
+                            BorderColor: =App.Theme.Colors.Darker40
+                            Color: =RGBA(0, 0, 0, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            PaddingBottom: =0
+                            PaddingLeft: =10
+                            PaddingRight: =10
+                            PaddingTop: =0
+                            Size: =12
+                            Text: =ThisItem.'Segment / Business Unit'
+                            Width: =200
+                            ZIndex: =3
+
+                        Label3_10 As label:
+                            BorderColor: =App.Theme.Colors.Darker40
+                            Color: =RGBA(0, 0, 0, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            PaddingBottom: =0
+                            PaddingLeft: =10
+                            PaddingRight: =10
+                            PaddingTop: =0
+                            Size: =12
+                            Text: =ThisItem.'BPID/ CIF number'
+                            ZIndex: =4
+
+                        Label3_11 As label:
+                            BorderColor: =App.Theme.Colors.Darker40
+                            Color: =RGBA(0, 0, 0, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            PaddingBottom: =0
+                            PaddingLeft: =10
+                            PaddingRight: =10
+                            PaddingTop: =0
+                            Size: =12
+                            Text: =ThisItem.'Client Type'
+                            ZIndex: =5
+
+                        Label3_12 As label:
+                            BorderColor: =App.Theme.Colors.Darker40
+                            Color: =RGBA(0, 0, 0, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            PaddingBottom: =0
+                            PaddingLeft: =10
+                            PaddingRight: =10
+                            PaddingTop: =0
+                            Size: =12
+                            Text: =ThisItem.Theme
+                            ZIndex: =6
+
+                        Button1_1 As button:
+                            AlignInContainer: =AlignInContainer.Center
+                            BorderColor: =App.Theme.Colors.Primary
+                            BorderThickness: =1
+                            Color: =RGBA(0, 0, 0, 1)
+                            DisabledBorderColor: =RGBA(244, 244, 244, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            DisabledFill: =RGBA(244, 244, 244, 1)
+                            DisplayMode: =DisplayMode.View
+                            Fill: |-
+                                =If( ThisItem.'Approval Status' = "Awaiting Approval",
+                                        gblAppColors.StatusBlue,
+                                    ThisItem.'2nd Approval Status' = "Awaiting Approval",
+                                        gblAppColors.StatusBlue,
+                                    ThisItem.'Approval Status' = "Reject",
+                                         gblAppColors.StatusRed,
+                                    ThisItem.'2nd Approval Status' = "Reject",
+                                        gblAppColors.StatusRed,
+                                    ThisItem.'Approval Status' = "Approve",
+                                        gblAppColors.StatusGreen,
+                                     ThisItem.'2nd Approval Status' = "Approve",
+                                        gblAppColors.StatusGreen
+                                )
+                            Font: =App.Theme.Font
+                            FontWeight: =FontWeight.Semibold
+                            Height: =45
+                            HoverBorderColor: =App.Theme.Colors.Darker10
+                            HoverColor: =RGBA(255, 255, 255, 1)
+                            HoverFill: =App.Theme.Colors.Darker10
+                            OnSelect: =
+                            PressedBorderColor: =App.Theme.Colors.Darker40
+                            PressedColor: =Self.Color
+                            PressedFill: =App.Theme.Colors.Darker40
+                            Size: =12
+                            Text: |-
+                                =If( ThisItem.'Approval Status' = "Awaiting Approval",
+                                        ThisItem.'Approval Status' & " from 1st approver",
+                                    ThisItem.'2nd Approval Status' = "Awaiting Approval",
+                                        ThisItem.'2nd Approval Status' & " from 2st approver",
+                                    ThisItem.'Approval Status' = "Reject",
+                                        ThisItem.'Approval Status' & "ed from 1st approver",
+                                    ThisItem.'2nd Approval Status' = "Reject",
+                                        ThisItem.'2nd Approval Status' & "ed from 2st approver",
+                                    ThisItem.'Approval Status' = "Approve",
+                                        ThisItem.'Approval Status' & "d from 1st approver",
+                                    ThisItem.'2nd Approval Status' = "Approve",
+                                        ThisItem.'2nd Approval Status' & "d from 2st approver"
+                                )
+                            Width: =200
+                            ZIndex: =7
+
+                    NextArrowRequestDetails_1 As icon.ChevronRight:
+                        AccessibleLabel: =Self.Tooltip
+                        BorderColor: =App.Theme.Colors.Darker40
+                        Color: =RGBA(166, 166, 166, 1)
+                        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                        DisabledColor: =RGBA(244, 244, 244, 1)
+                        Height: =50
+                        Icon: =Icon.ChevronRight
+                        OnSelect: |-
+                            =Select(Parent);
+                            Set(varRequestType,"Approval");
+                            ResetForm(FormCRCRequestAppovalDetails) ; EditForm(FormCRCRequestAppoval); Navigate(ScreenRequestAppoval,ScreenTransition.None)
+                        PaddingBottom: =12
+                        PaddingLeft: =12
+                        PaddingRight: =12
+                        PaddingTop: =12
+                        Tooltip: ="View item details"
+                        Width: =50
+                        X: =Parent.TemplateWidth - Self.Width - 12
+                        Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+                        ZIndex: =4
+

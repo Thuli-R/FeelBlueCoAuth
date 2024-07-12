@@ -1,0 +1,58 @@
+{
+  "45c30dbc-dbbc-493c-880d-92c780d17791": {
+    "appActions": [
+      "providers/PowerPlatform.Governance/Operations/Read",
+      "providers/PowerPlatform.Governance/Operations/Write",
+      "providers/PowerPlatform.Governance/Operations/Delete"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "SharePoint",
+      "iconUri": "https://connectoricons-prod.azureedge.net/u/jayawan/releases/v1.0.1697/1.0.1697.3786/sharepointonline/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_sharepointonline",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {
+      "https://standardbank.sharepoint.com/sites/BCCSA-SalesEnablement": {
+        "dataSources": {
+          "Binary Table": {
+            "tableName": "bd7c65ff-f0f2-45fb-93a1-ea12b460fe8b"
+          },
+          "CDD Allocation Team": {
+            "tableName": "bb7915c4-9995-45b9-9928-1b290b7e765d"
+          },
+          "CRC PowerApp Data": {
+            "tableName": "19f90d39-5f96-493a-a511-e20b1025d3e9"
+          }
+        }
+      }
+    },
+    "dataSources": [
+      "Binary Table",
+      "CDD Allocation Team",
+      "CRC PowerApp Data"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "45c30dbc-dbbc-493c-880d-92c780d17791"
+  },
+  "c8f645bb-8916-410b-bbcc-e2881640da8d": {
+    "appActions": [],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Office 365 Users",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1694/1.0.1694.3752/office365users/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_office365users",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [
+      "Office365Users"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "c8f645bb-8916-410b-bbcc-e2881640da8d"
+  }
+}

@@ -1,0 +1,44 @@
+App As appinfo:
+    BackEnabled: =true
+    Formulas: |-
+        =fnUserEmail=User().Email;
+        fnUserFullName=User().FullName;
+        //Colors
+        gblAppColors = {
+                    // Primary Colors
+                    PrimaryBlue: ColorValue("#3256A0"),      //Standarbank Blue
+                    PrimaryBg: ColorValue("#041545"),      // Light Red
+                    Primary3: ColorValue("#222831"),      // Dark Blue
+                    Primary4: ColorValue("#DDDDDD"),      // Light Gray
+                    // Accent Colors
+                    Black: ColorValue("#000000"),
+                    Cyan: ColorValue("#17A2B8"),
+                    Green: ColorValue("#28A745"),
+                    Orange: ColorValue("#FD7E14"),
+                    Red: ColorValue("#DC3545"),
+                    Teal: ColorValue("#20C997"),
+                    White: ColorValue("#FFFFFF"),
+                    Yellow: ColorValue("#FFC107"),
+                    // Neutral Colors
+                    GrayDark: ColorValue("#484644"),
+                    GrayMediumDark: ColorValue("#8A8886"),
+                    GrayMedium: ColorValue("#B3b0AD"),
+                    GrayMediumLight: ColorValue("#D2D0CE"),
+                    GrayLight: ColorValue("#F3F2F1"),
+                    //
+                    DialogboxBg:RGBA(0,0,0,0.3),
+                    //Status or Stages Colors
+                    StatusBlue:RGBA(180, 214, 250, 1),
+                    StatusGreen: RGBA(166, 215, 153, 1),
+                    StatusRed:RGBA(255, 184, 174, 1)
+                };
+    OnStart: =Set(varUserAccess,LookUp('Binary Table',Lower('A1 User Email')=Lower(fnUserEmail)))
+    Theme: =PowerAppsTheme
+
+    Host As hostControl.DefaultHostControlVariant:
+        OnCancel: =false
+        OnEdit: =false
+        OnNew: =false
+        OnSave: =false
+        OnView: =false
+

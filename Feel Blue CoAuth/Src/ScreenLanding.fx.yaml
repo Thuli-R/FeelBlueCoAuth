@@ -1,0 +1,56 @@
+"ScreenLanding As screen.'welcomeLayout_ver1.0'":
+    BackgroundImage: ='537447158'
+    Fill: =Color.White
+    ImagePosition: =ImagePosition.Fill
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+
+    Image3 As image:
+        BorderColor: =App.Theme.Colors.Darker40
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        Height: =110
+        Image: ='SB-Sheild-CMYK2'
+        Width: =134
+        X: =28
+        Y: =28
+        ZIndex: =1
+
+    Label2 As label:
+        Align: =Align.Center
+        BorderColor: =RGBA(12, 59, 94, 1)
+        BorderThickness: =7
+        Color: =RGBA(12, 59, 94, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Fill: =RGBA(214, 221, 224, 0.8)
+        Font: =App.Theme.Font
+        FontWeight: =FontWeight.Bold
+        Height: =194
+        Size: =50
+        Text: |-
+            ="BCB 
+            CRC Tracker"
+        Width: =782
+        X: =279
+        Y: =224
+        ZIndex: =2
+
+    ButtonCanvas2 As Button:
+        Appearance: ='ButtonCanvas.Appearance'.Secondary
+        BasePaletteColor: =
+        BorderColor: =RGBA(12, 59, 94, 1)
+        BorderStyle: =BorderStyle.Solid
+        BorderThickness: =2
+        DisplayMode: =DisplayMode.Edit
+        Font: =Font.'Lato Black'
+        FontColor: =RGBA(12, 59, 94, 1)
+        FontSize: =20
+        Height: =58
+        Icon: ="Home"
+        IconStyle: ='ButtonCanvas.IconStyle'.Filled
+        OnSelect: =Navigate(ScreenHome,ScreenTransition.None)
+        Text: ="HOME"
+        Width: =282
+        X: =529
+        Y: =643
+        ZIndex: =3
+
